@@ -1,5 +1,6 @@
 lemin_debug
 lemin_test
+lemin
 .clang_complete
 *.dSYM
 *.o

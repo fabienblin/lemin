@@ -6,7 +6,7 @@
 #   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     #
 #                                                 #+#   #+    #+    #+#      #
 #   Created: 2018/07/25 16:44:31 by fablin       #+#   ##    ##    #+#       #
-#   Updated: 2018/07/25 17:15:01 by fablin      ###    #+. /#+    ###.fr     #
+#   Updated: 2018/07/25 17:52:52 by fablin      ###    #+. /#+    ###.fr     #
 #                                                         /                  #
 #                                                        /                   #
 # ************************************************************************** #
@@ -57,10 +57,11 @@ libft	:
 			@make -C ./libft/
 
 test	:	libft
-			gcc ./src/*.c ./libft/libft.a -I ./libft/inc -I ./inc -o lemin_test < map
+			gcc ./src/*.c ./libft/libft.a -I ./libft/inc -I ./inc -o lemin_test
+			./lemin_test < map
 
 debug	:	libft
 			gcc -ggdb ./src/*.c ./libft/libft.a -I ./libft/inc -I ./inc -o lemin_debug
-			lldb lemin_debug
+			lldb ./lemin_debug
 
 .PHONY	:	all clean fclean re libft obj
