@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 16:57:37 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 20:36:20 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 21:38:03 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,30 @@
 
 typedef struct	s_env
 {
-	char *file;
+	char	*file;
+	int		nbant;
+	t_list	*ants;
+	t_list	*nodes;
+	t_list	*links;
+	t_ntree	*start;
+	t_ntree	*end;
+	char	*output;
 }				t_env;
 
+typedef struct	s_ant
+{
+	char	*id;
+	t_list	*path;
+	int		start_turn;
+}				t_ant;
+
+void			exit_lemin(t_env **env, char *msg);
+int				get_input(t_env *env);
+int				init_env(t_env *env);
+int				solve(t_env *env);
+int				output(t_env *env);
+t_env			*newenv(void);
+void			delenv(t_env **env);
+t_ant			*newant(char *id, t_list *path, int	start_turn);
+void			delant(t_ant **ant);
 #endif

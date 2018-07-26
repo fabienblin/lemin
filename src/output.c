@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   output.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/07/25 16:46:54 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 19:10:17 by fablin      ###    #+. /#+    ###.fr     */
+/*   Created: 2018/07/26 16:49:42 by fablin       #+#   ##    ##    #+#       */
+/*   Updated: 2018/07/26 17:05:07 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int		main(void)
+int				output(t_env *env)
 {
-	t_env	*env;
-
-	env = newenv();
-	get_input(env);
-	init_env(env);
-	solve(env);
-	output(env);
-	exit_lemin(&env, "");
-	return (0);
+	ft_printf("%s", env->file);
+	return (1);
 }

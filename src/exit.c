@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   exit.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/07/25 16:46:54 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 19:10:17 by fablin      ###    #+. /#+    ###.fr     */
+/*   Created: 2018/07/26 16:42:56 by fablin       #+#   ##    ##    #+#       */
+/*   Updated: 2018/07/26 19:09:18 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int		main(void)
+void	exit_lemin(t_env **env, char *msg)
 {
-	t_env	*env;
-
-	env = newenv();
-	get_input(env);
-	init_env(env);
-	solve(env);
-	output(env);
-	exit_lemin(&env, "");
-	return (0);
+	delenv(env);
+	if (errno)
+		ft_exit(strerror(errno));
+	else
+		ft_exit(msg);
 }
