@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 16:57:37 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 21:38:03 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/27 23:58:49 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,4 +46,5 @@ t_env			*newenv(void);
 void			delenv(t_env **env);
 t_ant			*newant(char *id, t_list *path, int	start_turn);
 void			delant(t_ant **ant);
+void			ft_delstrsplit(char ***split);
 #endif

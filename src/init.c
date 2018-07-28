@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 16:44:41 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 21:47:21 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/27 23:59:32 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,6 +26,7 @@ t_list	*set_ants(t_env *env)
 	{
 		ant = newant(ft_itoa(i), NULL, 0);
 		ft_lstpush(&ants, ft_lstnew(ant, sizeof(t_ant)));
+		delant(&ant);
 		i++;
 	}
 	return (ants);
@@ -43,5 +44,6 @@ int		init_env(t_env *env)
 		//env->nodes = set_nodes(env, split);
 		//env->links = set_links(env, split);
 	}
+	ft_delstrsplit(&split);
 	return (1);
 }

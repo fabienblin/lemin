@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 16:47:40 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 20:57:16 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/28 00:17:47 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,6 +39,7 @@ int		valid_nodes(char *node)
 			(!ft_isdigit(split[2][0])))
 			valid = 0;
 	}
+	ft_delstrsplit(&split);
 	return (valid);
 }
 
@@ -57,8 +58,7 @@ int		valid_links(char *link)
 			!ft_isdigit(split[1][0]))
 			valid = 0;
 	}
-	free(split[0]);
-	free(split[1]);
+	ft_delstrsplit(&split);
 	return (valid);
 }
 
@@ -102,14 +102,13 @@ int		valid_file(char *file)
 		(valid = valid_nodes(split[i])))
 	{
 		i++;
-		if (valid == 0 && valid_links(split[i]))
+		if (valid == 0 && (valid = valid_links(split[i])))
 			valid = 1;
 	}
 	while ((valid && split[i]) &&
 			(valid = valid_links(split[i])))
 		i++;
-	while(split[i])
-		free(split[i--]);
+	ft_delstrsplit(&split);
 	return (valid);
 }
 
