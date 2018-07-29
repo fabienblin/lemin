@@ -6,22 +6,22 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 21:16:46 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 21:40:18 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/29 17:48:24 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-t_ant	*newant(char *id, t_list *path, int	start_turn)
+t_ant	*newant(char *name, t_list *path, int start_turn)
 {
 	t_ant	*new;
 
 	if (!(new = (t_ant *)malloc(sizeof(t_ant))))
 		return (NULL);
 	ft_bzero(new, sizeof(t_ant));
-	if (id)
-		new->id = id;
+	if (name)
+		new->name = name;
 	if (path)
 		new->path = path;
 	new->start_turn = start_turn;
@@ -33,19 +33,18 @@ void delpath(void *path, size_t size)
 	(void)size;
 	if (path)
 	{
-		free(path);
+		;//free(path);
 	}
 }
 
-void	delant(t_ant **ant)
+void delant(void *ant, size_t size)
 {
-	if (ant && *ant)
+	(void)size;
+	if (ant)
 	{
-		if ((*ant)->id)
-			ft_strdel(&(*ant)->id);
-		if ((*ant)->path)
-			ft_lstdel(&(*ant)->path, delpath);
-		free(*ant);
-		ant = NULL;
+		if (((t_ant *)ant)->name)
+			ft_strdel(&((t_ant *)ant)->name);
+		if (((t_ant *)ant)->path)
+			ft_lstdel(&((t_ant *)ant)->path, delpath);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 16:44:41 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/27 23:59:32 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/29 17:11:56 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,6 +16,7 @@
 t_list	*set_ants(t_env *env)
 {
 	t_list	*ants;
+	t_list	*tmp;
 	t_ant	*ant;
 	int		i;
 
@@ -25,11 +26,41 @@ t_list	*set_ants(t_env *env)
 	while (i < env->nbant)
 	{
 		ant = newant(ft_itoa(i), NULL, 0);
-		ft_lstpush(&ants, ft_lstnew(ant, sizeof(t_ant)));
-		delant(&ant);
+		tmp = ft_lstnew(NULL, 0);
+		tmp->content = ant;
+		ft_lstpush(&ants, tmp);
+		delant(ant, sizeof(t_ant));
 		i++;
 	}
 	return (ants);
+}
+
+t_list	*set_nodes(t_env *env)
+{
+	t_list	*nodes;
+	char	**split;
+	char	**line;
+	t_ntree	*node;
+	int		i;
+
+	nodes = NULL;
+	node = NULL;
+	split = ft_strsplit(env->file, '\n');
+	i = 1;
+	while (split[i] && valid_nodes(split[i]))
+	{
+		line = ft_strsplit(split[i], ' ');
+		node = ft_newntree(ft_strdup(line[0]),
+						ft_newpoint(ft_atoi(line[1]), ft_atoi(line[2])),
+						0,
+						NULL);
+		ft_lstpush(&nodes, ft_lstnew(node, sizeof(t_ntree)));
+		ft_delntree(&node, sizeof(t_ntree));
+		ft_delstrsplit(&line);
+		i++;
+	}
+	ft_delstrsplit(&split);
+	return (nodes);
 }
 
 int		init_env(t_env *env)

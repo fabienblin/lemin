@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 16:57:37 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/27 23:58:49 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/29 17:06:48 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,7 +32,7 @@ typedef struct	s_env
 
 typedef struct	s_ant
 {
-	char	*id;
+	char	*name;
 	t_list	*path;
 	int		start_turn;
 }				t_ant;
@@ -44,7 +44,10 @@ int				solve(t_env *env);
 int				output(t_env *env);
 t_env			*newenv(void);
 void			delenv(t_env **env);
-t_ant			*newant(char *id, t_list *path, int	start_turn);
-void			delant(t_ant **ant);
+t_ant			*newant(char *name, t_list *path, int	start_turn);
+void			delant(void *ant, size_t size);
 void			ft_delstrsplit(char ***split);
+int				valid_nodes(char *node);
+int				valid_links(char *link);
+void	ft_putlst(t_list *lst);
 #endif

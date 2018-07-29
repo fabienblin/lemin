@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 16:47:40 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/28 00:17:47 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/28 18:54:52 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,9 +29,9 @@ int		valid_nodes(char *node)
 	char	**split;
 
 	valid = 1;
-	split = ft_strsplit(node, ' ');
 	if (node[0] == '#')
 		return (1);
+	split = ft_strsplit(node, ' ');
 	if (split && split[0] && split[1] && split[2])
 	{
 		if (!ft_isdigit(split[0][0]) ||
@@ -98,16 +98,18 @@ int		valid_file(char *file)
 		valid = 0;
 	if (valid && !valid_ants(split[0]))
 		valid = 0;
-	while ((valid && split[i]) &&
-		(valid = valid_nodes(split[i])))
+	while (valid && split[i])
 	{
+		valid = valid_nodes(split[i]);
 		i++;
-		if (valid == 0 && (valid = valid_links(split[i])))
-			valid = 1;
+		if (valid == 0)
+			valid = valid_links(split[i]);
 	}
-	while ((valid && split[i]) &&
-			(valid = valid_links(split[i])))
+	while (valid && split[i])
+	{
+		valid = valid_links(split[i]);
 		i++;
+	}
 	ft_delstrsplit(&split);
 	return (valid);
 }
