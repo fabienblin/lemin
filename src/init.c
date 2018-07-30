@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 16:44:41 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/29 17:11:56 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/29 20:28:45 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,7 +55,7 @@ t_list	*set_nodes(t_env *env)
 						0,
 						NULL);
 		ft_lstpush(&nodes, ft_lstnew(node, sizeof(t_ntree)));
-		ft_delntree(&node, sizeof(t_ntree));
+		ft_delntree(&node);
 		ft_delstrsplit(&line);
 		i++;
 	}
