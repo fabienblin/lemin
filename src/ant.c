@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 21:16:46 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/29 18:24:07 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/30 17:00:36 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,7 +37,7 @@ void delpath(void *path, size_t size)
 	}
 }
 
-void delant(void *ant, size_t size)
+void delantlst(void *ant, size_t size)
 {
 	(void)size;
 	if (ant)

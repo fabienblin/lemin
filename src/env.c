@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 16:53:00 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/29 20:28:29 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/30 17:04:17 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,16 +23,21 @@ t_env			*newenv(void)
 	return (env);
 }
 
-void delnode(void *node, size_t size)
+void delntreelst(void *node, size_t size)
 {
 	(void)size;
 	if (node)
 	{
-		free(node);
+		if (((t_ntree *)node)->name)
+			ft_strdel(&((t_ntree *)node)->name);
+		if (((t_ntree *)node)->coord)
+			ft_delpoint(&((t_ntree *)node)->coord);
+		//if (t->sons)
+			//ft_lstdel(&(t_ntree *)t->sons, delnode);
 	}
 }
 
-void dellink(void *link, size_t size)
+void dellinklst(void *link, size_t size)
 {
 	(void)size;
 	if (link)
@@ -46,13 +51,13 @@ void			delenv(t_env **env)
 	if ((*env)->file)
 		ft_strdel(&(*env)->file);
 	if ((*env)->ants)
-		ft_lstdel(&(*env)->ants, delant);
+		ft_lstdel(&(*env)->ants, delantlst);
 	if ((*env)->nodes)
-		ft_lstdel(&(*env)->nodes, delnode);
+		ft_lstdel(&(*env)->nodes, delntreelst);
 	if ((*env)->links)
-		ft_lstdel(&(*env)->links, dellink);
-	if ((*env)->start)
-		ft_delntree(&(*env)->start);
+		ft_lstdel(&(*env)->links, dellinklst);
+	//if ((*env)->start)
+		//ft_delntree(&(*env)->start);
 	if ((*env)->output)
 		ft_strdel(&(*env)->output);
 	free(*env);
