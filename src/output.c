@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 16:49:42 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 17:05:07 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/01 15:40:42 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,6 +15,9 @@
 
 int				output(t_env *env)
 {
-	ft_printf("%s", env->file);
+	ft_printf("%s\n", env->file);
+	ft_printf("nbant = %d\n", env->nbant);
+	ft_putntreelst(env->nodes);
+	ft_putantlst(env->ants);
 	return (1);
 }

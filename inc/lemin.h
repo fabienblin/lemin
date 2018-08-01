@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 16:57:37 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/30 17:00:52 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/01 15:33:53 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,6 @@ typedef struct	s_env
 	int		nbant;
 	t_list	*ants;
 	t_list	*nodes;
-	t_list	*links;
 	t_ntree	*start;
 	t_ntree	*end;
 	char	*output;
@@ -50,4 +49,8 @@ void			ft_delstrsplit(char ***split);
 int				valid_nodes(char *node);
 int				valid_links(char *link);
 void			ft_putlst(t_list *lst);
+t_ntree			*get_ntree_in_lst(char *name, t_list *lst);
+t_ntree			*get_ntree_in_ntree(char *name, t_ntree *t);
+void	ft_putntreelst(t_list *lst);
+void	ft_putantlst(t_list *lst);
 #endif
