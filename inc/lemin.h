@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 16:57:37 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/01 15:33:53 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/03 17:01:24 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,6 +51,8 @@ int				valid_links(char *link);
 void			ft_putlst(t_list *lst);
 t_ntree			*get_ntree_in_lst(char *name, t_list *lst);
 t_ntree			*get_ntree_in_ntree(char *name, t_ntree *t);
-void	ft_putntreelst(t_list *lst);
-void	ft_putantlst(t_list *lst);
+void			ft_putntreelst(t_list *lst);
+void			ft_putantlst(t_list *lst);
+void			ft_put_start_end(t_env *env);
+void 			delntreelst(void *node, size_t size);
 #endif

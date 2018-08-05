@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/27 23:54:36 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/01 15:07:37 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/04 18:47:16 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,10 +18,13 @@ void	ft_delstrsplit(char ***split)
 	int	i;
 	
 	i = 0;
-	while ((*split)[i])
-		ft_strdel(&(*split)[i++]);
-	free(*split);
-	*split = NULL;
+	if (split && *split)
+	{
+		while ((*split)[i])
+			ft_strdel(&(*split)[i++]);
+		free(*split);
+		*split = NULL;
+	}
 }
 
 void	ft_putantlst(t_list *lst)
@@ -40,13 +43,29 @@ void	ft_putntreelst(t_list *lst)
 {
 	while (lst)
 	{
-		ft_printf("name = '%s'\tcoord = %p\tdepth = %d\tbsons = %d\n",
+		ft_printf("name = '%s'\tcoord = %p\tdepth = %d\tnbsons = %d\n",
 				((t_ntree *)lst->content)->name,
 				((t_ntree *)lst->content)->coord,
 				((t_ntree *)lst->content)->depth,
 				((t_ntree *)lst->content)->nbsons);
 		lst = lst->next;
 	}
+}
+
+void	ft_put_start_end(t_env *env)
+{
+	if (env->start){
+	ft_printf("start :\tname = '%s'\tcoord = %p\tdepth = %d\tnbsons = %d\n",
+			env->start->name,
+			env->start->coord,
+			env->start->depth,
+			env->start->nbsons);}
+	if (env->end){
+	ft_printf("end :\tname = '%s'\tcoord = %p\tdepth = %d\tnbsons = %d\n",
+			env->end->name,
+			env->end->coord,
+			env->end->depth,
+			env->end->nbsons);}
 }
 
 t_ntree	*get_ntree_in_lst(char *name, t_list *lst)

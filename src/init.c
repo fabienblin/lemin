@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 16:44:41 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/01 19:58:54 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/04 21:24:12 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,6 +27,8 @@ void	set_ants(t_env *env)
 			ft_lstadd(&env->ants, ft_lstnew(NULL, 0));
 			env->ants->content = ant;
 		}
+		else
+			exit_lemin(&env, "Invalid ants.");
 		i++;
 	}
 }
@@ -49,10 +51,17 @@ void	set_nodes(t_env *env, char **split)
 									0,
 									NULL)))
 			{
+				if (get_ntree_in_lst(node->name, env->nodes))
+				{
+					ft_delstrsplit(&line);
+					exit_lemin(&env, "Node allready declared.");
+				}
 				ft_lstadd(&env->nodes, ft_lstnew(NULL, 0));
 				env->nodes->content = node;
 			}
 			ft_delstrsplit(&line);
+			if (!node)
+				exit_lemin(&env, "Invalid node.");
 		}
 		i++;
 	}
@@ -84,8 +93,56 @@ void	set_links(t_env *env, char **split)
 				to->nbsons++;
 			}
 			ft_delstrsplit(&line);
+			if (!from || !to)
+				exit_lemin(&env, "Invalid link.");
 		}
 		i++;
+	}
+}
+
+void	set_start_end(t_env *env)
+{
+	char	*node;
+	char	**line;
+	char	**split;
+	
+	
+	if ((node = ft_strstr(env->file, "##start\n")))
+	{
+		split = ft_strsplit(node + 8, '\n');
+		line = ft_strsplit(*split, ' ');
+		ft_delstrsplit(&split);
+		env->start = get_ntree_in_lst(line[0], env->nodes);
+		ft_delstrsplit(&line);
+	}
+	if ((node = ft_strstr(env->file, "##end\n")))
+	{
+		split = ft_strsplit(node + 6, '\n');
+		line = ft_strsplit(*split, ' ');
+		ft_delstrsplit(&split);
+		env->end = get_ntree_in_lst(line[0], env->nodes);
+		ft_delstrsplit(&line);
+	}
+}
+
+void	check_coords(t_env *env)
+{
+	t_list	*i;
+	t_list	*j;
+
+	i = env->nodes;
+	while (i)
+	{
+		j = env->nodes;
+		while(j)
+		{
+			if (j != i && !ft_memcmp((char *)(((t_ntree *)i->content)->coord),
+									(char *)(((t_ntree *)j->content)->coord),
+									sizeof(t_point)))
+				exit_lemin(&env, "Node coords are identical.");
+			j = j->next;
+		}
+		i = i->next;
 	}
 }
 
@@ -99,7 +156,9 @@ int		init_env(t_env *env)
 		env->nbant = ft_atoi(split[0]);
 		set_ants(env);
 		set_nodes(env, split);
+		check_coords(env);
 		set_links(env, split);
+		set_start_end(env);
 	}
 	ft_delstrsplit(&split);
 	return (1);

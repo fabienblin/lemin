@@ -6,7 +6,7 @@
 #   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     #
 #                                                 #+#   #+    #+    #+#      #
 #   Created: 2018/07/25 16:44:31 by fablin       #+#   ##    ##    #+#       #
-#   Updated: 2018/07/31 20:21:49 by fablin      ###    #+. /#+    ###.fr     #
+#   Updated: 2018/08/04 18:53:57 by fablin      ###    #+. /#+    ###.fr     #
 #                                                         /                  #
 #                                                        /                   #
 # ************************************************************************** #
@@ -29,6 +29,8 @@ OFILES =	$(CFILES:.c=.o)
 OBJECTS =	$(addprefix $(OBJ_DIR), $(OFILES))
 
 FLAGS =		-Wall -Wextra -Werror
+
+MAP =		o.map
 
 all : $(NAME)
 
@@ -59,7 +61,7 @@ libft	:
 
 test	:	libft
 			gcc $(SOURCES) ./libft/libft.a -I ./libft/inc -I ./inc -o lemin_test
-			./lemin_test < map
+			./lemin_test < $(MAP)
 
 debug	:	libft
 			gcc -ggdb $(SOURCES) ./libft/libft.a -I ./libft/inc -I ./inc -o lemin_debug
