@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 16:53:00 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/01 17:21:11 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/09 18:32:19 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,6 +23,15 @@ t_env			*newenv(void)
 	return (env);
 }
 
+void	ft_lstdel2(t_list **alst, void (*del)(void *, size_t))
+{
+	if (*alst)
+	{
+		ft_lstdel2(&((*alst)->next), del);
+		ft_memdel((void **)alst);
+	}
+}
+
 void delntreelst(void *node, size_t size)
 {
 	(void)size;
@@ -33,7 +42,7 @@ void delntreelst(void *node, size_t size)
 		if (((t_ntree *)node)->coord)
 			ft_delpoint(&((t_ntree *)node)->coord);
 		if (((t_ntree *)node)->sons)
-			ft_lstdel(&((t_ntree *)node)->sons, NULL);
+			ft_lstdel2(&((t_ntree *)node)->sons, NULL);
 	}
 }
 
