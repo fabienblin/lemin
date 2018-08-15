@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 21:16:46 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/30 17:00:36 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/13 19:22:58 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,9 +17,7 @@ t_ant	*newant(char *name, t_list *path, int start_turn)
 {
 	t_ant	*new;
 
-	if (!(new = (t_ant *)malloc(sizeof(t_ant))))
-		return (NULL);
-	ft_bzero(new, sizeof(t_ant));
+	new = ft_memalloc(sizeof(t_ant));
 	if (name)
 		new->name = name;
 	if (path)
@@ -31,9 +29,9 @@ t_ant	*newant(char *name, t_list *path, int start_turn)
 void delpath(void *path, size_t size)
 {
 	(void)size;
-	if (path)
+	if ((t_list *)path)
 	{
-		;//free(path);
+		;
 	}
 }
 
@@ -45,6 +43,6 @@ void delantlst(void *ant, size_t size)
 		if (((t_ant *)ant)->name)
 			ft_strdel(&((t_ant *)ant)->name);
 		if (((t_ant *)ant)->path)
-			ft_lstdel(&((t_ant *)ant)->path, delpath);
+			ft_lstdel(&((t_ant *)ant)->path, NULL);
 	}
 }

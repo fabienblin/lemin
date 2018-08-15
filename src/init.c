@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 16:44:41 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/04 21:24:12 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/15 17:39:49 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,6 +16,7 @@
 void	set_ants(t_env *env)
 {
 	t_ant	*ant;
+	t_list	*l;
 	int		i;
 
 	ant = NULL;
@@ -24,8 +25,9 @@ void	set_ants(t_env *env)
 	{
 		if ((ant = newant(ft_itoa(i), NULL, 0)))
 		{
-			ft_lstadd(&env->ants, ft_lstnew(NULL, 0));
-			env->ants->content = ant;
+			l = ft_lstnew(NULL, 0);
+			ft_lstpush(&env->ants, l);
+			l->content = ant;
 		}
 		else
 			exit_lemin(&env, "Invalid ants.");

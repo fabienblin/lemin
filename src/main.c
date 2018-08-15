@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 16:46:54 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/09 18:01:50 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/15 18:30:25 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ int		main(void)
 	env = newenv();
 	get_input(env);
 	init_env(env);
-	//solve(env);
+	solve(env);
 	output(env);
 	exit_lemin(&env, NULL);
 	return (0);
