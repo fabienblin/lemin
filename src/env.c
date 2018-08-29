@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 16:53:00 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/09 18:32:19 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 18:10:23 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,8 +54,6 @@ void			delenv(t_env **env)
 		ft_lstdel(&(*env)->ants, delantlst);
 	if ((*env)->nodes)
 		ft_lstdel(&(*env)->nodes, delntreelst);
-	if ((*env)->output)
-		ft_strdel(&(*env)->output);
 	free(*env);
 	*env = NULL;
 }

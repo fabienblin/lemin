@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 16:57:37 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/03 17:01:24 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 18:11:30 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,7 +26,6 @@ typedef struct	s_env
 	t_list	*nodes;
 	t_ntree	*start;
 	t_ntree	*end;
-	char	*output;
 }				t_env;
 
 typedef struct	s_ant
@@ -55,4 +54,5 @@ void			ft_putntreelst(t_list *lst);
 void			ft_putantlst(t_list *lst);
 void			ft_put_start_end(t_env *env);
 void 			delntreelst(void *node, size_t size);
+int				ft_lstcmp(t_list *lstA, t_list *lstB, int sizeof_content);
 #endif

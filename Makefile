@@ -6,33 +6,33 @@
 #   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     #
 #                                                 #+#   #+    #+    #+#      #
 #   Created: 2018/07/25 16:44:31 by fablin       #+#   ##    ##    #+#       #
-#   Updated: 2018/08/07 20:08:10 by fablin      ###    #+. /#+    ###.fr     #
+#   Updated: 2018/08/29 18:23:24 by fablin      ###    #+. /#+    ###.fr     #
 #                                                         /                  #
 #                                                        /                   #
 # ************************************************************************** #
 
-SRC_DIR =	./src/
+SRC_DIR	=	./src/
 
-OBJ_DIR =	./obj/
+OBJ_DIR	=	./obj/
 
 INC_DIR =	./inc/
 
-NAME =		lemin
+NAME	=	lemin
 
-CFILES =	main.c	exit.c	init.c	input.c		output.c	solve.c		env.c\
+CFILES	=	main.c	exit.c	init.c	input.c		output.c	solve.c		env.c\
 			ant.c	utils.c
 
-SOURCES =	$(addprefix $(SRC_DIR), $(CFILES))
+SOURCES	=	$(addprefix $(SRC_DIR), $(CFILES))
 
-OFILES =	$(CFILES:.c=.o)
+OFILES	=	$(CFILES:.c=.o)
 
-OBJECTS =	$(addprefix $(OBJ_DIR), $(OFILES))
+OBJECTS	=	$(addprefix $(OBJ_DIR), $(OFILES))
 
-FLAGS =		-Wall -Wextra -Werror
+FLAGS	=	-Wall -Wextra -Werror
 
-MAP =		s.map
+MAP		=	maps/s.map
 
-all : $(NAME)
+all 	:	$(NAME)
 
 $(NAME)	:	$(OBJECTS)
 			@make libft
@@ -53,21 +53,21 @@ fclean	:	obj
 
 re		:	fclean all
 
-obj	:
+obj		:
 			@mkdir -p $(OBJ_DIR)
 
 libft	:
 			@make -C ./libft/
 
 test	:	libft
-			gcc $(SOURCES) -g ./libft/libft.a -I ./libft/inc -I ./inc -o lemin_test
+			gcc $(SOURCES) ./libft/libft.a -I ./libft/inc -I ./inc -o lemin_test
 			./lemin_test < $(MAP)
 
 debug	:	libft
-			gcc -ggdb -g $(SOURCES) ./libft/libft.a -I ./libft/inc -I ./inc -o lemin_debug
+			gcc -ggdb $(SOURCES) ./libft/libft.a -I ./libft/inc -I ./inc -o lemin_debug
 			lldb ./lemin_debug
 
 valgrind:	test
-			valgrind --track-origins=yes --leak-check=full ./lemin_test < $(MAP)
+			valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all ./lemin_test < $(MAP)
 
 .PHONY	:	all clean fclean re libft obj

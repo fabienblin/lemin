@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/27 23:54:36 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/04 18:47:16 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/20 17:22:38 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,6 +27,18 @@ void	ft_delstrsplit(char ***split)
 	}
 }
 
+int		ft_lstcmp(t_list *lstA, t_list *lstB, int sizeof_content)
+{
+	while (lstA && lstB && !ft_memcmp(lstA->content, lstB->content, sizeof_content))
+	{
+		lstA = lstA->next;
+		lstB = lstB->next;
+	}
+	if (!lstA && !lstB)
+		return (0);
+	return (1);
+}
+
 void	ft_putantlst(t_list *lst)
 {
 	while (lst)
@@ -41,7 +53,7 @@ void	ft_putantlst(t_list *lst)
 
 void	ft_putntreelst(t_list *lst)
 {
-	while (lst)
+	while (lst && lst->content)
 	{
 		ft_printf("name = '%s'\tcoord = %p\tdepth = %d\tnbsons = %d\n",
 				((t_ntree *)lst->content)->name,

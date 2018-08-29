@@ -6,19 +6,32 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 16:47:40 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/02 09:52:01 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 18:14:31 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
+int		valid_name(char *name)
+{
+	int	i;
+
+	i = ft_strlen(name);
+	while (i--)
+	{
+		if (!ft_isalnum(name[i]))
+			return (0);
+	}
+	return (1);
+}
+
 int		valid_ants(char *ants)
 {
 	int valid;
 
 	valid = 1;
-	if (!ft_isdigit(ants[0]))
+	if (ft_atoi(ants) == 0)
 		valid = 0;
 	return (valid);
 }
@@ -32,14 +45,13 @@ int		valid_nodes(char *node)
 	if (node)
 	{
 		valid = 1;
-		if (node[0] == '#')
-			return (1);
 		split = ft_strsplit(node, ' ');
 		if (split && split[0] && split[1] && split[2] && !split[3])
 		{
-			if (!ft_isalnum(split[0][0]) ||
+			if ((!valid_name(split[0])) ||
 				(!ft_isdigit(split[1][0])) ||
-				(!ft_isdigit(split[2][0])))
+				(!ft_isdigit(split[2][0])) ||
+				(split[0][0] == 'L'))
 				valid = 0;
 		}
 		else
@@ -58,13 +70,11 @@ int		valid_links(char *link)
 	if (link)
 	{
 		valid = 1;
-		if (link[0] == '#')
-			return (1);
 		split = ft_strsplit(link, '-');
 		if (split && split[0] && split [1] && !split[2])
 		{
-			if (!ft_isalnum(split[0][0]) ||
-				!ft_isalnum(split[1][0]))
+			if (!valid_name(split[0]) ||
+				!valid_name(split[1]))
 				valid = 0;
 		}
 		ft_delstrsplit(&split);
@@ -96,6 +106,8 @@ int		valid_start_end(char *file)
 				valid = 0;
 			ft_delstrsplit(&split);
 		}
+		else
+			valid = 0;
 	}
 	return (valid);
 }
@@ -118,9 +130,12 @@ int		valid_file(char *file)
 			valid = 0;
 		while (valid && split[i])
 		{
-			valid = valid_nodes(split[i]);
-			if (valid == 0)
-				valid = valid_links(split[i]);
+			if (split[i][0] != '#')
+			{
+				valid = valid_nodes(split[i]);
+				if (valid == 0)
+					valid = valid_links(split[i]);
+			}
 			i++;
 		}
 		while (valid && split[i])
@@ -145,6 +160,6 @@ int		get_input(t_env *env)
 			return (-1);
 	}
 	if (gnl == -1 || !valid_file(env->file))
-		exit_lemin(&env, "Invalid file.");
+		exit_lemin(&env, "ERROR");
 	return (gnl);
 }

@@ -4,3 +4,6 @@ lemin
 .clang_complete
 *.dSYM
 *.o
+maps
+.*
+*.map
