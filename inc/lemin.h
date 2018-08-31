@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 16:57:37 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/31 19:46:22 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/31 19:57:24 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,4 +55,5 @@ void			delntreelst(void *node, size_t size);
 int				ft_lstcmp(t_list *lsta, t_list *lstb, int sizeof_content);
 void			set_nodes(t_env *env, char **split);
 void			set_links(t_env *env, char **split);
+int				valid_file(char *file);
 #endif
