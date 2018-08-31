@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 16:50:24 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 18:15:52 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/31 16:28:44 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,12 +16,12 @@
 void	ft_lstdelfirst(t_list **alst, void (*del)(void *, size_t))
 {
 	t_list	*lst;
-	
+
 	lst = *alst;
 	*alst = lst->next;
 	if (del)
 		del(lst->content, lst->content_size);
-	free (lst->content);
+	free(lst->content);
 	ft_memdel((void **)&lst);
 }
 
@@ -60,12 +60,15 @@ int		is_path_used(char *name, t_env *env, int turn, t_list *path)
 	return (0);
 }
 
-t_list	*dijkstra(t_env *env, t_ntree *current, int turn, t_list *path, t_list **best_path)
+t_list	*dijkstra(t_env *env, t_ntree *current, int turn, t_list **best_path)
 {
 	t_list			*son;
+	static t_list	*path = NULL;
 
 	ft_lstadd(&path, ft_lstnew(current, sizeof(t_ntree)));
-	if (!ft_strcmp(current->name, env->end->name) && (ft_lstlen(*best_path) == 0 || ft_lstlen(path) <= ft_lstlen(*best_path)))
+	if (!ft_strcmp(current->name, env->end->name) &&
+		(ft_lstlen(*best_path) == 0 ||
+		ft_lstlen(path) <= ft_lstlen(*best_path)))
 	{
 		ft_lstdel(best_path, NULL);
 		*best_path = ft_lstdup(path);
@@ -76,7 +79,7 @@ t_list	*dijkstra(t_env *env, t_ntree *current, int turn, t_list *path, t_list **
 		while (son)
 		{
 			if (!is_path_used(((t_ntree *)son->content)->name, env, turn, path))
-				dijkstra(env, (t_ntree *)son->content, turn + 1, path, best_path);
+				dijkstra(env, (t_ntree *)son->content, turn + 1, best_path);
 			son = son->next;
 		}
 	}
@@ -89,12 +92,14 @@ int		solve(t_env *env)
 	t_list	*ant;
 
 	ant = env->ants;
-	if (!(dijkstra(env, env->start, ((t_ant *)ant->content)->start_turn, NULL, &((t_ant *)ant->content)->path)))
+	if (!(dijkstra(env, env->start, ((t_ant *)ant->content)->start_turn,
+		&((t_ant *)ant->content)->path)))
 		exit_lemin(&env, "ERROR");
 	ant = ant->next;
 	while (ant)
 	{
-		if (!(dijkstra(env, env->start, ((t_ant *)ant->content)->start_turn, NULL, &((t_ant *)ant->content)->path)))
+		if (!(dijkstra(env, env->start, ((t_ant *)ant->content)->start_turn,
+			&((t_ant *)ant->content)->path)))
 			((t_ant *)ant->content)->start_turn++;
 		else
 			ant = ant->next;

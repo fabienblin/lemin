@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 21:16:46 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/13 19:22:58 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 21:21:11 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,16 +26,7 @@ t_ant	*newant(char *name, t_list *path, int start_turn)
 	return (new);
 }
 
-void delpath(void *path, size_t size)
-{
-	(void)size;
-	if ((t_list *)path)
-	{
-		;
-	}
-}
-
-void delantlst(void *ant, size_t size)
+void	delantlst(void *ant, size_t size)
 {
 	(void)size;
 	if (ant)

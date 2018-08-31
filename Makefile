@@ -6,7 +6,7 @@
 #   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     #
 #                                                 #+#   #+    #+    #+#      #
 #   Created: 2018/07/25 16:44:31 by fablin       #+#   ##    ##    #+#       #
-#   Updated: 2018/08/29 18:23:24 by fablin      ###    #+. /#+    ###.fr     #
+#   Updated: 2018/08/31 16:37:38 by fablin      ###    #+. /#+    ###.fr     #
 #                                                         /                  #
 #                                                        /                   #
 # ************************************************************************** #
@@ -20,7 +20,7 @@ INC_DIR =	./inc/
 NAME	=	lemin
 
 CFILES	=	main.c	exit.c	init.c	input.c		output.c	solve.c		env.c\
-			ant.c	utils.c
+			ant.c	utils.c	init_ext.c			input_ext.c
 
 SOURCES	=	$(addprefix $(SRC_DIR), $(CFILES))
 

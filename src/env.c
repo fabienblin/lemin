@@ -6,14 +6,14 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 16:53:00 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 18:10:23 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 21:19:39 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-t_env			*newenv(void)
+t_env	*newenv(void)
 {
 	t_env	*env;
 
@@ -32,7 +32,7 @@ void	ft_lstdel2(t_list **alst, void (*del)(void *, size_t))
 	}
 }
 
-void delntreelst(void *node, size_t size)
+void	delntreelst(void *node, size_t size)
 {
 	(void)size;
 	if (node)
@@ -46,7 +46,7 @@ void delntreelst(void *node, size_t size)
 	}
 }
 
-void			delenv(t_env **env)
+void	delenv(t_env **env)
 {
 	if ((*env)->file)
 		ft_strdel(&(*env)->file);
