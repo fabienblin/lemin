@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/31 16:29:09 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/31 16:36:44 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/31 16:57:18 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,6 +59,9 @@ static void	set_links_ext(char **split, t_env *env, int i)
 	t_ntree	*from;
 	t_ntree	*to;
 
+	line = NULL;
+	from = NULL;
+	to = NULL;
 	if ((line = ft_strsplit(split[i], '-')) && line[0] && line[1] && !line[2] &&
 		(from = get_ntree_in_lst(line[0], env->nodes)) &&
 		(to = get_ntree_in_lst(line[1], env->nodes)))

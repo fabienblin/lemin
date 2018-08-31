@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 16:47:40 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/31 16:40:01 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/31 19:50:17 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -79,7 +79,6 @@ int		valid_file(char *file)
 {
 	int		valid;
 	char	**split;
-	int		i;
 
 	valid = 0;
 	if (file)
@@ -90,7 +89,8 @@ int		valid_file(char *file)
 			valid = 0;
 		if (valid && !valid_ants(split[0]))
 			valid = 0;
-		valid = valid_file_ext(split);
+		if (valid && !valid_file_ext(split))
+			valid = 0;
 		ft_delstrsplit(&split);
 	}
 	return (valid);
@@ -103,6 +103,8 @@ int		get_input(t_env *env)
 
 	while ((gnl = get_next_line(0, &line)) > 0)
 	{
+		if (!ft_strlen(line))
+			break ;
 		if (!(env->file = ft_strjoinfree(env->file, line)) ||
 			!(env->file = ft_strjoinfree(env->file, ft_strdup("\n"))))
 			return (-1);

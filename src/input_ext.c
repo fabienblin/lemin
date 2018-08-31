@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/31 16:38:47 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/31 16:41:46 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/31 18:42:28 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,7 +31,7 @@ int			valid_ants(char *ants)
 	int valid;
 
 	valid = 1;
-	if (ft_atoi(ants) == 0)
+	if (ft_atoi(ants) <= 0)
 		valid = 0;
 	return (valid);
 }
