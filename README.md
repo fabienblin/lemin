@@ -7,7 +7,7 @@ The input file contains data on ants and hive, and the output shows a possible o
 
 Dijkstra's algorithm is used to define each ant's route.
 
-### Compiling
+### Compiling / Run
 
 ```
 make
