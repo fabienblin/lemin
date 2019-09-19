@@ -16,4 +16,4 @@ make
 
 ## Author
 
-* **Fabien Blin** @ 42
+* **Fabien Blin** @ 42 Lyon
